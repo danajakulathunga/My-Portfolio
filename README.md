@@ -1,4 +1,4 @@
-## Dana's Personal Portfolio – React + Vite
+## Dana's Personal Portfolio – React
 
 This is a modern, responsive personal portfolio website built with React (Vite).  
 It includes dedicated sections for Home, About, Skills, Projects, Photography, and Contact, plus a sticky navbar, smooth scrolling, and a scroll-to-top button.
