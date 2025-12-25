@@ -1,0 +1,81 @@
+.achievements-section {
+  background: radial-gradient(circle at 0 0, var(--accent-soft), transparent 60%);
+}
+
+.achievement-grid {
+  margin-top: 2.1rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-left: -0.5cm;
+  margin-right: -0.5cm;
+}
+
+.achievement-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at 0 0, var(--accent-soft), transparent 55%),
+    var(--card-bg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  margin: 0.5cm;
+  transition:
+    transform 0.16s ease-out,
+    box-shadow 0.16s ease-out,
+    border-color 0.16s ease-out,
+    background 0.16s ease-out;
+}
+
+.achievement-image {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transform: scale(1.03);
+  transition: transform 0.22s ease-out;
+}
+
+.achievement-body {
+  padding: 1.1rem 1.25rem 1.3rem;
+  text-align: center;
+}
+
+.achievement-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.achievement-tagline {
+  margin: 0 0 0.8rem;
+  font-size: 0.96rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.achievement-copy {
+  margin: 0 0 0.9rem;
+  font-size: 0.94rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.achievement-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: radial-gradient(circle at 0 0, var(--accent-soft), var(--card-bg));
+}
+
+.achievement-card:hover .achievement-image {
+  transform: scale(1.06);
+}
+
+@media (max-width: 640px) {
+  .achievement-image {
+    height: 230px;
+  }
+}
+
+

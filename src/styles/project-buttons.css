@@ -1,0 +1,79 @@
+.project-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid;
+  border-radius: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-med),
+    border-color var(--transition-med),
+    box-shadow var(--transition-med);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.action-button:active {
+  transform: scale(0.97);
+}
+
+.github-button {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(100, 116, 139, 0.4);
+  color: #e2e8f0;
+}
+
+.github-button:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(148, 163, 184, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.screenshots-button {
+  background: var(--accent);
+  border-color: var(--accent-strong);
+  color: #ffffff;
+}
+
+.screenshots-button:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+.button-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 640px) {
+  .project-actions {
+    gap: 0.6rem;
+  }
+
+  .action-button {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.82rem;
+  }
+
+  .button-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}

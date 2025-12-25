@@ -1,0 +1,108 @@
+.contact-container {
+  max-width: 900px;
+}
+
+.contact-form {
+  margin-top: 2.2rem;
+  padding: 1.6rem 1.5rem 1.7rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at 0 0, var(--accent-soft), transparent 55%),
+    var(--card-bg);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 1.1rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.form-field input,
+.form-field textarea {
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  resize: vertical;
+  min-height: 0;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--muted);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--error);
+}
+
+.form-success {
+  margin: 0.35rem 0 0;
+  font-size: 0.86rem;
+  color: var(--success);
+}
+
+.whatsapp-fab {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 5.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  transition: transform 0.18s ease, background-color 0.18s ease;
+  z-index: 120;
+}
+
+.whatsapp-fab:hover {
+  background: #1da851;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.whatsapp-fab:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.whatsapp-fab svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 640px) {
+  .contact-form {
+    padding-inline: 1.2rem;
+  }
+
+  .whatsapp-fab {
+    right: 1rem;
+    bottom: 4.5rem;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+

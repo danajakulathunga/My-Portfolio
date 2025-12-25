@@ -1,0 +1,21 @@
+/* Fixed, behind all content */
+.flow-background-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure app content sits above background */
+.app {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-background-canvas {
+    /* Still rendered but animation will be static */
+  }
+}
