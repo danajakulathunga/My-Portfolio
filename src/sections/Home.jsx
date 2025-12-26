@@ -28,7 +28,7 @@ and creative visual storytelling. This portfolio showcases my projects, skills, 
               View Projects
             </a>
             <a href="#contact" className="btn btn-outline">
-              Let's Connect
+              Connect With Me
             </a>
           </div>
         </div>
