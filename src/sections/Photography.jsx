@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 
 function Photography() {
   const navigate = useNavigate()
-  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.2 })
+  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.15, rootMargin: '0px' })
   const [loadedImages, setLoadedImages] = useState(new Set())
 
   // Select specific photos by their file names: 1(70), 1(31), 1(61)

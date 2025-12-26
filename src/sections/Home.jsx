@@ -4,7 +4,7 @@ import { useTypewriter } from '../hooks/useTypewriter'
 import { triggerSectionAnimation } from '../utils/animationUtils'
 
 function Home() {
-  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.2 })
+  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.15, rootMargin: '0px' })
   const subtitles = ['Full-Stack Developer', 'UI / UX Engineer', 'Photographer']
   const animatedSubtitle = useTypewriter(subtitles, 100, 50, 2000)
 

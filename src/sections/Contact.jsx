@@ -4,7 +4,7 @@ import { useSectionAnimation } from '../hooks/useSectionAnimation'
 
 
 function Contact() {
-  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.2 })
+  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.15, rootMargin: '0px' })
   const [form, setForm] = useState({
     name: '',
     email: '',

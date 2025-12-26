@@ -2,7 +2,7 @@ import { achievementsData } from '../data/achievementsData'
 import { useSectionAnimation } from '../hooks/useSectionAnimation'
 
 function Achievements() {
-  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.25 })
+  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.15, rootMargin: '0px' })
 
   return (
     <section

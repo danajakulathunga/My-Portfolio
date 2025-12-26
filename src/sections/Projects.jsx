@@ -11,7 +11,7 @@ function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.25 })
+  const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.15, rootMargin: '0px' })
 
   const filterOptions = useMemo(() => {
     const counts = projectsData.reduce(
