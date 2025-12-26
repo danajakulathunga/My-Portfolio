@@ -8,9 +8,9 @@ function Photography() {
   const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.2 })
   const [loadedImages, setLoadedImages] = useState(new Set())
 
-  // Select specific photos by their file names: 1(70), 1(61), 1(34)
-  // These correspond to indices 63, 54, 27 in the photosData array
-  const previewPhotos = [photosData[63], photosData[54], photosData[27]].filter(Boolean)
+  // Select specific photos by their file names: 1(70), 1(31), 1(61)
+  // These correspond to indices 57, 20, 48 in the photosData array
+  const previewPhotos = [photosData[57], photosData[20], photosData[48]].filter(Boolean)
 
   // Preload images when component mounts
   useEffect(() => {

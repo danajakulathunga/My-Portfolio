@@ -87,7 +87,7 @@ function ImageFullpageViewer() {
 
       {zoom > 1 && (
         <div className="fullpage-viewer-hint">
-          Scroll to zoom | Click to close | "Esc" to back
+          Scroll up/down to Zoom in/out | Move cursor point | Click to close | "Esc" to back
         </div>
       )}
     </div>
