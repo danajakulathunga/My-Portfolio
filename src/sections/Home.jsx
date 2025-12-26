@@ -7,6 +7,20 @@ function Home() {
   const subtitles = ['Full-Stack Developer', 'UI / UX Engineer', 'Photographer']
   const animatedSubtitle = useTypewriter(subtitles, 100, 50, 2000)
 
+  const scrollToProjects = (event) => {
+    event.preventDefault()
+    const target = document.getElementById('projects')
+    if (!target) return
+
+    const navbar = document.querySelector('.navbar')
+    const navHeight = navbar?.offsetHeight || 0
+    const extra = window.matchMedia('(max-width: 768px)').matches ? 18 : 10
+    const offset = navHeight + extra
+    const y = target.getBoundingClientRect().top + window.scrollY - offset
+
+    window.scrollTo({ top: y, behavior: 'smooth' })
+  }
+
   return (
     <section id="home" ref={sectionRef} className={`section home-section ${animateClass}`}>
       <div className="container home-container">
@@ -24,7 +38,12 @@ and creative visual storytelling. This portfolio showcases my projects, skills, 
 
           </p>
           <div className="home-actions">
-            <a href="#projects" className="btn btn-primary">
+            <a
+              href="#projects"
+              className="btn btn-primary"
+              onClick={scrollToProjects}
+              onTouchStart={scrollToProjects}
+            >
               View Projects
             </a>
             <a href="#contact" className="btn btn-outline">

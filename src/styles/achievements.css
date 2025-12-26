@@ -73,8 +73,41 @@
 }
 
 @media (max-width: 640px) {
+  .achievement-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .achievement-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
   .achievement-image {
-    height: 230px;
+    height: 210px;
+    object-fit: cover;
+  }
+
+  .achievement-body {
+    padding: 1rem 1rem 1.25rem;
+  }
+
+  .achievement-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .achievement-tagline {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 0.9rem;
+  }
+
+  .achievement-copy {
+    font-size: 0.92rem;
+    line-height: 1.45;
   }
 }
 

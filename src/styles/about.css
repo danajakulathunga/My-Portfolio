@@ -12,7 +12,7 @@
     var(--bg-gradient-mid) 40%,
     var(--bg-gradient-end) 100%
   );
-  padding: 6rem 0;
+  padding: 4rem 0 6rem;
 }
 
 .about-container{
