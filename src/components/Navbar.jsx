@@ -30,12 +30,19 @@ function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const scrollToSection = (sectionId) => {
+  const getScrollOffset = () => {
+    const navbar = document.querySelector('.navbar')
+    const navHeight = navbar?.offsetHeight || 0
+    const extra = window.matchMedia('(max-width: 768px)').matches ? 18 : 10
+    return navHeight + extra
+  }
+
+  const scrollToSection = (sectionId, behavior = 'instant') => {
     const el = document.getElementById(sectionId)
     if (!el) return
-    const yOffset = -80
-    const y = el.getBoundingClientRect().top + window.scrollY + yOffset
-    window.scrollTo({ top: y, behavior: 'instant' })
+    const yOffset = getScrollOffset()
+    const y = el.getBoundingClientRect().top + window.scrollY - yOffset
+    window.scrollTo({ top: y, behavior })
   }
 
   const handleScroll = (id) => {
@@ -47,7 +54,7 @@ function Navbar() {
       navigate('/', { state: { scrollTo: id } })
     } else {
       // Already on main page, just scroll
-      scrollToSection(id)
+      scrollToSection(id, 'instant')
     }
 
     setIsOpen(false)
@@ -92,12 +99,7 @@ function Navbar() {
     if (location.state?.scrollTo) {
       const sectionId = location.state.scrollTo
       setTimeout(() => {
-        const el = document.getElementById(sectionId)
-        if (el) {
-          const yOffset = -80
-          const y = el.getBoundingClientRect().top + window.scrollY + yOffset
-          window.scrollTo({ top: y, behavior: 'instant' })
-        }
+        scrollToSection(sectionId, 'instant')
       }, 50)
     }
   }, [location])
