@@ -82,7 +82,7 @@ function Contact() {
       >
         <div className="container contact-container">
           <div className="section-header">
-            <h2 className="section-title">Get in Touch</h2>
+            <h2 className="section-title">Start a Conversation</h2>
             <p className="section-subtitle">
               Have a project in mind or just want to say hello? Send a message
               using the form below.
