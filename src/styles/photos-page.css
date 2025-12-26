@@ -85,6 +85,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  /* Prevent layout shift during loading */
+  min-height: 200px;
 }
 
 .photo-tile.loading {
@@ -99,6 +101,30 @@
 .photo-tile.error {
   background: rgba(249, 115, 115, 0.1);
   border-color: rgba(249, 115, 115, 0.3);
+}
+
+/* Skeleton loader for images */
+.photo-tile-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.08) 0%,
+    rgba(99, 102, 241, 0.15) 50%,
+    rgba(99, 102, 241, 0.08) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @keyframes shimmer {
@@ -119,12 +145,32 @@
   object-fit: contain;
   object-position: center;
   background: rgba(0, 0, 0, 0.05);
+  display: block;
+  position: relative;
+  z-index: 2;
+  /* Ensure image stays in place during loading */
+  will-change: opacity;
 }
 
 .photo-tile:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   border-color: var(--accent-soft);
+}
+
+/* Ensure smooth rendering on mobile devices */
+@media (max-width: 768px) {
+  .photo-tile {
+    /* Optimize for mobile performance */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  .photo-tile-image {
+    /* Better mobile image rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }
 
 @media (max-width: 1024px) {
