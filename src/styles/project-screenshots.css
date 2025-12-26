@@ -16,7 +16,7 @@
   position: relative;
   max-width: 1200px;
   width: calc(100% - 2rem);
-  max-height: 95vh;
+  max-height: 95svh;
   height: auto;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
@@ -117,7 +117,7 @@
   height: 100%;
   width: 100%;
   min-height: 400px;
-  max-height: calc(95vh - 220px);
+  max-height: calc(95svh - 220px);
 }
 
 .image-frame img {
@@ -202,7 +202,7 @@
 @media (max-width: 768px) {
   .viewer-box {
     width: 100%;
-    max-height: 100vh;
+    max-height: 100svh;
     border-radius: 0;
   }
 
@@ -220,7 +220,7 @@
 
   .image-frame {
     min-height: 300px;
-    max-height: calc(100vh - 240px);
+    max-height: calc(100svh - 240px);
   }
 
   .thumbnail {

@@ -14,7 +14,7 @@
 .lightbox-content {
   position: relative;
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 90svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
 
 .lightbox-image {
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 90svh;
   object-fit: contain;
   border-radius: 12px;
   background: #000;
