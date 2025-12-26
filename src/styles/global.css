@@ -318,6 +318,51 @@ main {
   main {
     padding-top: 64px;
   }
+
+  .footer-social {
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-social-link {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+  }
+
+  .footer-social-link svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-social {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-social-link {
+    width: 52px;
+    height: 52px;
+  }
+
+  .footer-social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer-caption {
+    font-size: 1.1rem;
+  }
+
+  .footer-caption-secondary {
+    font-size: 0.95rem;
+  }
 }
 
 /* Scoped section header styles for specific pages (do not apply to navbar) */
