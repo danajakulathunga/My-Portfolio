@@ -1,6 +1,7 @@
 import ProfilePicture from '../components/ProfilePicture'
 import { useSectionAnimation } from '../hooks/useSectionAnimation'
 import { useTypewriter } from '../hooks/useTypewriter'
+import { triggerSectionAnimation } from '../utils/animationUtils'
 
 function Home() {
   const { ref: sectionRef, animateClass } = useSectionAnimation({ threshold: 0.2 })
@@ -11,6 +12,9 @@ function Home() {
     event.preventDefault()
     const target = document.getElementById('projects')
     if (!target) return
+
+    // Trigger animation before scrolling
+    triggerSectionAnimation('projects')
 
     const navbar = document.querySelector('.navbar')
     const navHeight = navbar?.offsetHeight || 0
