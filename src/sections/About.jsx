@@ -17,7 +17,7 @@ const ProgressBar = ({ label, percent }) => (
 )
 
 function About() {
-  const { ref: sectionRef, isVisible, animateClass } = useSectionAnimation({ threshold: 0.35 })
+  const { ref: sectionRef, isVisible, animateClass } = useSectionAnimation({ threshold: 0.15, rootMargin: '0px' })
 
   const skills = [
     'HTML',
