@@ -51,7 +51,8 @@ function Photography() {
                 src={photo.src} 
                 alt={photo.alt} 
                 className="photo-image"
-                loading="eager"
+                loading="lazy"
+                sizes="(max-width: 640px) 90vw, (max-width: 960px) 50vw, 32vw"
                 decoding="async"
               />
             </div>

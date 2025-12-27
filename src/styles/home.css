@@ -1,5 +1,9 @@
 .home-section {
-  padding-top: 5.25rem;
+  padding-top: 3.25rem;
+  padding-bottom: 10rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .home-container {
@@ -8,6 +12,8 @@
   gap: 4rem;
   align-items: center;
 }
+
+
 
 .home-eyebrow {
   font-size: 1.85rem;
@@ -120,8 +126,8 @@
 
 .home-image {
   position: relative;
-  width: 210px;
-  height: 210px;
+  width: 240px;
+  height: 240px;
   border-radius: 999px;
   object-fit: cover;
   border: 2px solid rgba(226, 232, 240, 0.85);
@@ -141,11 +147,15 @@
 
   .home-section {
     padding-top: 4.6rem;
+    padding-bottom: 5rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
   }
 
   .home-image {
-    width: 190px;
-    height: 190px;
+    width: 205px;
+    height: 205px;
   }
 }
 

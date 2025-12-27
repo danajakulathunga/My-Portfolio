@@ -22,6 +22,9 @@ function Achievements() {
                 src={new URL(`../assets/images/Achievements/${achievement.image}`, import.meta.url).href}
                 alt={achievement.title}
                 className="achievement-image"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
               />
               <div className="achievement-body">
                 <h3 className="achievement-title">{achievement.title}</h3>

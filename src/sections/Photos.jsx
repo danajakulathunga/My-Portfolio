@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { photosData } from '../data/photosData'
 import '../styles/photos-page.css'
@@ -7,55 +7,9 @@ function Photos() {
   const navigate = useNavigate()
   const [loadedImages, setLoadedImages] = useState(new Set())
   const [imageErrors, setImageErrors] = useState(new Set())
-  const imageRefs = useRef({})
-  const preloadedImages = useRef(new Map())
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [])
-
-  // Aggressive preloading: Start loading images immediately
-  useEffect(() => {
-    const preloadImage = (photo) => {
-      return new Promise((resolve) => {
-        const img = new Image()
-        
-        img.onload = () => {
-          preloadedImages.current.set(photo.id, img)
-          setLoadedImages((prev) => new Set([...prev, photo.id]))
-          resolve({ id: photo.id, success: true })
-        }
-        
-        img.onerror = () => {
-          setImageErrors((prev) => new Set([...prev, photo.id]))
-          setLoadedImages((prev) => new Set([...prev, photo.id]))
-          resolve({ id: photo.id, success: false })
-        }
-        
-        // Set src to trigger loading
-        img.src = photo.src
-      })
-    }
-
-    // Preload images in batches to avoid overwhelming the browser
-    const batchSize = 10
-    let currentBatch = 0
-
-    const loadBatch = () => {
-      const start = currentBatch * batchSize
-      const end = Math.min(start + batchSize, photosData.length)
-      const batch = photosData.slice(start, end)
-
-      Promise.all(batch.map(preloadImage)).then(() => {
-        currentBatch++
-        if (currentBatch * batchSize < photosData.length) {
-          // Small delay between batches to prevent browser throttling
-          setTimeout(loadBatch, 50)
-        }
-      })
-    }
-
-    loadBatch()
   }, [])
 
   const handleImageLoad = useCallback((photoId) => {
@@ -94,11 +48,11 @@ function Photos() {
               className={`photo-tile ${loadedImages.has(photo.id) ? 'loaded' : 'loading'} ${imageErrors.has(photo.id) ? 'error' : ''}`}
             >
               <img 
-                ref={(el) => (imageRefs.current[photo.id] = el)}
                 src={photo.src} 
                 alt={photo.alt} 
                 className="photo-tile-image"
-                loading="eager"
+                loading="lazy"
+                sizes="(max-width: 480px) 50vw, (max-width: 768px) 33vw, (max-width: 1200px) 25vw, 320px"
                 decoding="async"
                 onLoad={() => handleImageLoad(photo.id)}
                 onError={() => handleImageError(photo.id)}

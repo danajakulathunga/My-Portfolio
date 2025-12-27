@@ -100,6 +100,9 @@ function Projects() {
                 src={project.image}
                 alt={project.title}
                 className="project-image"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
               />
               <div className="project-body">
                 <h3 className="project-title">{project.title}</h3>
