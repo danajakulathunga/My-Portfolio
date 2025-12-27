@@ -120,10 +120,17 @@
 @media (max-width: 640px) {
   .photography-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .photo-card {
+    aspect-ratio: auto;
   }
 
   .photo-image {
-    height: 230px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 }
 
