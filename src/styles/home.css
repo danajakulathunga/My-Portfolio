@@ -13,13 +13,11 @@
   align-items: center;
 }
 
-
-
 .home-eyebrow {
   font-size: 1.85rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:royalblue;
+  color: royalblue;
   margin: 0 0 0.6rem;
 }
 
@@ -35,7 +33,7 @@
   min-height: 1.8rem;
   display: flex;
   align-items: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -57,10 +55,12 @@
 }
 
 @keyframes blink {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }
@@ -76,6 +76,50 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  align-items: center;
+}
+
+/* View Projects Button - Primary Blue/Purple */
+.home-actions .btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  color: #f9fafb;
+}
+
+.home-actions .btn-primary:hover {
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+}
+
+/* Connect With Me Button - Teal Outline */
+.home-actions .btn-outline {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 184, 184, 0.1) 0%,
+    rgba(14, 165, 233, 0.1) 100%
+  );
+  color: #22d3ee;
+  border: 2px solid #22d3ee;
+}
+
+.home-actions .btn-outline:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 184, 184, 0.2) 0%,
+    rgba(14, 165, 233, 0.2) 100%
+  );
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+
+/* Download My CV Button - Same as View Projects (Blue/Purple) */
+.btn-cv {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  color: #f9fafb;
+  box-shadow: none;
+}
+
+.btn-cv:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
 }
 
 .home-image-wrapper {
@@ -86,18 +130,32 @@
 
 /* Animated gradient border effect */
 @keyframes gradient-border-rotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes subtle-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(99, 102, 241, 0.15); border-radius: 999px; }
-  50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.4), 0 0 60px rgba(59, 130, 246, 0.25); }
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3),
+      0 0 40px rgba(99, 102, 241, 0.15);
+    border-radius: 999px;
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4),
+      0 0 60px rgba(59, 130, 246, 0.25);
+  }
 }
 
 .home-image-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -4px;
   border-radius: 999px;
@@ -225,5 +283,3 @@
 }
 
 /* Removed static cursor after element to avoid non-blinking bar */
-
-

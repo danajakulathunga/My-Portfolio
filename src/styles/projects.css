@@ -222,7 +222,6 @@ video.project-video {
 
 .video-play-overlay:hover {
   background: rgba(99, 102, 241, 1) !important;
-  transform: translate(-50%, -50%) scale(1.1) !important;
   box-shadow: 0 6px 25px rgba(99, 102, 241, 0.7) !important;
 }
 

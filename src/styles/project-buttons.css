@@ -18,10 +18,8 @@
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
-  transition:
-    transform var(--transition-fast),
-    background-color var(--transition-med),
-    border-color var(--transition-med),
+  transition: transform var(--transition-fast),
+    background-color var(--transition-med), border-color var(--transition-med),
     box-shadow var(--transition-med);
   white-space: nowrap;
   text-decoration: none;
