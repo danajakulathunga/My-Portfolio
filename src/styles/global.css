@@ -1,6 +1,6 @@
 /* Dark theme (default) */
 :root,
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
   --bg: #050816;
   --bg-elevated: #070b1f;
   --bg-gradient-start: #1d263b;
@@ -23,11 +23,13 @@
   --navbar-bg: rgba(15, 23, 42, 0.92);
   --navbar-bg-scrolled: rgba(15, 23, 42, 0.98);
   --card-bg: rgba(15, 23, 42, 0.6);
+  --card-gradient-start: rgba(10, 20, 40, 0.95);
+  --card-gradient-end: rgba(15, 30, 55, 0.95);
   --input-bg: rgba(15, 23, 42, 0.5);
 }
 
 /* Light theme */
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   --bg: #ffffff;
   --bg-elevated: #f8fafc;
   --bg-gradient-start: #e0e7ff;
@@ -50,6 +52,8 @@
   --navbar-bg: rgba(248, 250, 252, 0.95);
   --navbar-bg-scrolled: rgba(248, 250, 252, 0.98);
   --card-bg: rgba(255, 255, 255, 0.8);
+  --card-gradient-start: rgba(245, 247, 252, 0.95);
+  --card-gradient-end: rgba(230, 235, 245, 0.95);
   --input-bg: rgba(248, 250, 252, 0.8);
 }
 
@@ -57,7 +61,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 html,
@@ -79,8 +84,8 @@ body {
   background-size: auto, cover;
   background-position: center;
   color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
-    'Inter', 'Segoe UI', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Inter", "Segoe UI", sans-serif;
 }
 
 img {
@@ -164,12 +169,9 @@ main {
   font-weight: 500;
   border: 1px solid transparent;
   cursor: pointer;
-  transition:
-    background-color var(--transition-fast),
-    color var(--transition-fast),
-    border-color var(--transition-fast),
-    transform 120ms ease-out,
-    box-shadow 120ms ease-out;
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast), border-color var(--transition-fast),
+    transform 120ms ease-out, box-shadow 120ms ease-out;
   text-decoration: none;
 }
 
@@ -191,7 +193,11 @@ main {
 }
 
 .btn-outline:hover {
-  background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.16), transparent);
+  background: radial-gradient(
+    circle at top left,
+    rgba(148, 163, 184, 0.16),
+    transparent
+  );
   border-color: rgba(148, 163, 184, 0.7);
 }
 
@@ -210,11 +216,8 @@ main {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-soft);
-  transition:
-    transform 0.15s ease-out,
-    box-shadow 0.15s ease-out,
-    border-color 0.15s ease-out,
-    background 0.2s ease-out;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+    border-color 0.15s ease-out, background 0.2s ease-out;
   z-index: 40;
 }
 
@@ -230,11 +233,11 @@ main {
   margin-top: 1rem;
 }
 
-:root[data-theme='dark'] .footer {
+:root[data-theme="dark"] .footer {
   background-color: rgba(15, 23, 42, 0.8);
 }
 
-:root[data-theme='light'] .footer {
+:root[data-theme="light"] .footer {
   background-color: rgba(248, 250, 252, 0.8);
 }
 
@@ -295,7 +298,7 @@ main {
 .footer-caption-secondary {
   margin: 0.12rem 0 0;
   color: rgba(148, 163, 184, 0.85);
-  font-size: 1.10rem;
+  font-size: 1.1rem;
 }
 
 .footer-text {
@@ -391,5 +394,3 @@ main {
   margin: 0 auto;
   color: var(--muted);
 }
-
-
