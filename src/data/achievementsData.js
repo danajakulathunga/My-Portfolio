@@ -1,39 +1,44 @@
 export const achievementsData = [
   {
     id: 1,
-    title: 'Web Design for Beginners',
+    title: "Web Design for Beginners",
     description:
       'I am happy to share that I have successfully completed the "Web Design for Beginners" Course conducted by the Centre for Open & Distance Learning(CODL) at the University of Moratuwa.',
-    image: '1.jpg',
+    image: "1.jpg",
   },
   {
     id: 2,
-    title: 'Front-End Web Development',
+    title: "Front-End Web Development",
     description:
-      'Proud to have completed the Front-End Web Development programme by the University of Moratuwa – Centre for Open & Distance Learning (CODL).',
-    image: '2.jpg',
+      "Proud to have completed the Front-End Web Development programme by the University of Moratuwa – Centre for Open & Distance Learning (CODL).",
+    image: "2.jpg",
   },
   {
     id: 3,
-    title: 'Python For Beginners',
+    title: "Python For Beginners",
     description:
-      'I have successfully completed the “Python for Beginners” online course conducted by the University of Moratuwa in collaboration with DP Education.',
-    image: '3.jpg',
+      "I have successfully completed the “Python for Beginners” online course conducted by the University of Moratuwa in collaboration with DP Education.",
+    image: "3.jpg",
   },
   {
     id: 4,
-    title: 'Introduction to UI/UX Design',
+    title: "Introduction to UI/UX Design",
     description:
-      'Completed the “Introduction to UI/UX Design” course by Alison, gaining a strong foundation in user-centered and intuitive design. Looking forward to applying creativity to build meaningful digital experiences.',
-    image: '4.jpg',
+      "Completed the “Introduction to UI/UX Design” course by Alison, gaining a strong foundation in user-centered and intuitive design. Looking forward to applying creativity to build meaningful digital experiences.",
+    image: "4.jpg",
   },
   {
     id: 5,
-    title: 'Introduction to C',
+    title: "Introduction to C",
     description:
-      'Successfully completed the “Introduction to C” course by Sololearn, gaining a strong foundation in C programming and core problem-solving concepts. Excited to apply these skills in future coding projects.',
-    image: '5.jpg',
+      "Successfully completed the “Introduction to C” course by Sololearn, gaining a strong foundation in C programming and core problem-solving concepts. Excited to apply these skills in future coding projects.",
+    image: "5.jpg",
   },
-]
-
-
+  {
+    id: 6,
+    title: "Mobile App Development with Flutter",
+    description:
+      'Completed the "Introduction to Mobile App Development with Flutter" course by Alison.com, building a strong foundation in cross-platform development and modern mobile app creation.',
+    image: "6.jpg",
+  },
+];
