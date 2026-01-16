@@ -1,5 +1,9 @@
 .achievements-section {
-  background: radial-gradient(circle at 0 0, var(--accent-soft), transparent 60%);
+  background: radial-gradient(
+    circle at 0 0,
+    var(--accent-soft),
+    transparent 60%
+  );
 }
 
 .achievement-grid {
@@ -14,17 +18,16 @@
 .achievement-card {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  background:
-    radial-gradient(circle at 0 0, var(--accent-soft), transparent 55%),
-    var(--card-bg);
+  background: linear-gradient(
+    135deg,
+    var(--card-gradient-start),
+    var(--card-gradient-end)
+  );
   box-shadow: var(--shadow-soft);
   overflow: hidden;
   margin: 0.5cm;
-  transition:
-    transform 0.16s ease-out,
-    box-shadow 0.16s ease-out,
-    border-color 0.16s ease-out,
-    background 0.16s ease-out;
+  transition: transform 0.16s ease-out, box-shadow 0.16s ease-out,
+    border-color 0.16s ease-out, background 0.16s ease-out;
 }
 
 .achievement-image {
@@ -65,7 +68,11 @@
 .achievement-card:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
-  background: radial-gradient(circle at 0 0, var(--accent-soft), var(--card-bg));
+  background: radial-gradient(
+    circle at 0 0,
+    var(--accent-soft),
+    var(--card-bg)
+  );
 }
 
 .achievement-card:hover .achievement-image {
@@ -110,5 +117,3 @@
     line-height: 1.45;
   }
 }
-
-
