@@ -7,7 +7,7 @@ import { useSectionAnimation } from "../hooks/useSectionAnimation";
 import M3Video from "../assets/images/projects/M3.mp4";
 
 // Video Preview Component for Project ID 7
-const VideoPreview = ({ videoSrc }) => {
+const VideoPreview = ({ videoSrc, poster }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -15,6 +15,7 @@ const VideoPreview = ({ videoSrc }) => {
   const [volume, setVolume] = useState(1);
   const [showControls, setShowControls] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [showPoster, setShowPoster] = useState(true);
   const controlsTimeoutRef = useRef(null);
 
   const resetControlsTimeout = useCallback(() => {
@@ -42,6 +43,9 @@ const VideoPreview = ({ videoSrc }) => {
         // Exited fullscreen - pause the video
         video.pause();
         setIsPlaying(false);
+        video.currentTime = 0;
+        video.load();
+        setShowPoster(true);
       }
     };
 
@@ -92,6 +96,7 @@ const VideoPreview = ({ videoSrc }) => {
     if (!video) return;
 
     try {
+      setShowPoster(false);
       // Request fullscreen
       if (video.requestFullscreen) {
         await video.requestFullscreen();
@@ -118,9 +123,11 @@ const VideoPreview = ({ videoSrc }) => {
     if (video.paused) {
       video.play();
       setIsPlaying(true);
+      setShowPoster(false);
     } else {
       video.pause();
       setIsPlaying(false);
+      setShowPoster(true);
     }
   };
 
@@ -175,15 +182,32 @@ const VideoPreview = ({ videoSrc }) => {
     } else if (document.msExitFullscreen) {
       document.msExitFullscreen();
     }
+    setShowPoster(true);
   };
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      {showPoster && poster && (
+        <img
+          src={poster}
+          alt="Project preview"
+          className="project-image"
+          style={{ cursor: "pointer" }}
+          onClick={handleVideoClick}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
       <video
         ref={videoRef}
         src={videoSrc}
+        poster={poster}
         className="project-image project-video"
-        style={{ cursor: "pointer", objectFit: "contain", aspectRatio: "4/3" }}
+        style={{
+          cursor: "pointer",
+          objectFit: "contain",
+          display: showPoster ? "none" : "block",
+        }}
         onClick={
           document.fullscreenElement ? togglePlayPause : handleVideoClick
         }
@@ -197,42 +221,61 @@ const VideoPreview = ({ videoSrc }) => {
       </video>
 
       {/* Play button overlay (only visible when not in fullscreen) */}
-      {!document.fullscreenElement && (
-        <button
-          type="button"
-          className="video-play-overlay"
-          onClick={handleVideoClick}
-          aria-label="Play video in fullscreen"
+      {!document.fullscreenElement && showPoster && (
+        <div
           style={{
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "60px",
-            height: "60px",
-            borderRadius: "50%",
-            background: "rgba(99, 102, 241, 0.9)",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            transition: "all 0.3s ease",
-            boxShadow: "0 4px 20px rgba(99, 102, 241, 0.5)",
-            border: "none",
-            padding: "0",
+            gap: "0.75rem",
           }}
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="white"
-            style={{ marginLeft: "3px" }}
-            aria-hidden="true"
+          <button
+            type="button"
+            className="video-play-overlay"
+            onClick={handleVideoClick}
+            aria-label="Play video in fullscreen"
+            style={{
+              width: "60px",
+              height: "60px",
+              borderRadius: "50%",
+              background: "rgba(99, 102, 241, 0.9)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              boxShadow: "0 4px 20px rgba(99, 102, 241, 0.5)",
+              border: "none",
+              padding: "0",
+            }}
           >
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="white"
+              style={{ marginLeft: "3px" }}
+              aria-hidden="true"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+          <span
+            style={{
+              color: "white",
+              fontSize: "0.95rem",
+              fontWeight: "600",
+              textShadow: "0 2px 8px rgba(0, 0, 0, 0.6)",
+              letterSpacing: "0.5px",
+            }}
+          >
+            Play the Video
+          </span>
+        </div>
       )}
 
       {/* Premium Custom Controls (only in fullscreen) */}
@@ -336,6 +379,7 @@ const VideoPreview = ({ videoSrc }) => {
 
 VideoPreview.propTypes = {
   videoSrc: PropTypes.string.isRequired,
+  poster: PropTypes.string,
 };
 
 function Projects() {
@@ -445,7 +489,7 @@ function Projects() {
           {filteredProjects.map((project) => (
             <article key={project.id} className="project-card">
               {project.id === 7 ? (
-                <VideoPreview videoSrc={M3Video} />
+                <VideoPreview videoSrc={M3Video} poster={project.image} />
               ) : (
                 <img
                   src={project.image}
