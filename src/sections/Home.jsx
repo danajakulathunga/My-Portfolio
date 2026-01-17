@@ -2,7 +2,11 @@ import ProfilePicture from "../components/ProfilePicture";
 import { useSectionAnimation } from "../hooks/useSectionAnimation";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { triggerSectionAnimation } from "../utils/animationUtils";
-import myCV from "../../assets/My CV/My CV New.pdf";
+
+const myCV = new URL(
+  /* @vite-ignore */ "../../assets/My CV/my_CV_New.pdf",
+  import.meta.url
+).href;
 
 function Home() {
   const { ref: sectionRef, animateClass } = useSectionAnimation({
