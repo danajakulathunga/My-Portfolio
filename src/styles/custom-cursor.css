@@ -1,0 +1,100 @@
+/* Custom Cursor Styles */
+
+/* Hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+
+  /* Custom cursor elements */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: rgba(99, 102, 241, 0.15);
+    pointer-events: none;
+    z-index: 9999;
+    transition:
+      transform 0.15s ease-out,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: transform;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+  }
+
+  .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 10000;
+    transition:
+      transform 0.08s ease-out,
+      background-color 0.2s ease;
+    will-change: transform;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Trail elements extending from cursor */
+  .custom-cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.6) 0%,
+      rgba(139, 92, 246, 0.3) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 9998;
+    will-change: transform, opacity;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease-out;
+    filter: blur(1px);
+  }
+
+  /* Hover state on interactive elements */
+  .custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.8);
+    background: rgba(99, 102, 241, 0.25);
+    border-color: #8b5cf6;
+    border-width: 2px;
+  }
+
+  .custom-cursor-dot.hover {
+    transform: translate(-50%, -50%) scale(0);
+    background: #8b5cf6;
+  }
+
+  /* Special state for clickable elements */
+  .custom-cursor.active {
+    transform: translate(-50%, -50%) scale(1.4);
+    background: rgba(139, 92, 246, 0.3);
+    border-color: #ec4899;
+  }
+
+  .custom-cursor-dot.active {
+    transform: translate(-50%, -50%) scale(1.2);
+    background: #ec4899;
+  }
+}
+
+/* Ensure cursor is hidden on mobile/touch devices */
+@media (hover: none) or (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-dot,
+  .custom-cursor-trail {
+    display: none !important;
+  }
+}
