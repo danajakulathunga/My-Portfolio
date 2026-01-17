@@ -16,6 +16,8 @@ const VideoPreview = ({ videoSrc, poster }) => {
   const [showControls, setShowControls] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [showPoster, setShowPoster] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const controlsTimeoutRef = useRef(null);
 
   const resetControlsTimeout = useCallback(() => {
@@ -24,11 +26,11 @@ const VideoPreview = ({ videoSrc, poster }) => {
     }
     setShowControls(true);
     controlsTimeoutRef.current = setTimeout(() => {
-      if (isPlaying && document.fullscreenElement) {
+      if (document.fullscreenElement) {
         setShowControls(false);
       }
-    }, 3000);
-  }, [isPlaying]);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -36,16 +38,27 @@ const VideoPreview = ({ videoSrc, poster }) => {
 
     const handleFullscreenChange = () => {
       if (document.fullscreenElement) {
-        setShowControls(true);
-        // Auto-hide controls after 3 seconds in fullscreen
+        setShowControls(false);
+        setIsFullscreen(true);
+        setZoomLevel(1);
+        // Force cursor visibility
+        video.style.cursor = "default";
+        document.documentElement.style.cursor = "default";
+        document.body.style.cursor = "default";
+        // Auto-hide controls after interaction
         resetControlsTimeout();
       } else {
-        // Exited fullscreen - pause the video
+        // Exited fullscreen - restore cursor and pause the video
+        video.style.cursor = "";
+        document.documentElement.style.cursor = "";
+        document.body.style.cursor = "";
         video.pause();
         setIsPlaying(false);
         video.currentTime = 0;
         video.load();
         setShowPoster(true);
+        setIsFullscreen(false);
+        setZoomLevel(1);
       }
     };
 
@@ -74,15 +87,15 @@ const VideoPreview = ({ videoSrc, poster }) => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.removeEventListener(
         "webkitfullscreenchange",
-        handleFullscreenChange
+        handleFullscreenChange,
       );
       document.removeEventListener(
         "mozfullscreenchange",
-        handleFullscreenChange
+        handleFullscreenChange,
       );
       document.removeEventListener(
         "MSFullscreenChange",
-        handleFullscreenChange
+        handleFullscreenChange,
       );
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
@@ -108,12 +121,30 @@ const VideoPreview = ({ videoSrc, poster }) => {
         await video.msRequestFullscreen();
       }
 
+      // Force cursor visibility in fullscreen
+      video.style.cursor = "default";
+      document.documentElement.style.cursor = "default";
+      document.body.style.cursor = "default";
+
       // Start playing only after entering fullscreen
       await video.play();
       setIsPlaying(true);
     } catch (error) {
       console.error("Error entering fullscreen or playing video:", error);
     }
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+    setShowPoster(true);
   };
 
   const togglePlayPause = () => {
@@ -127,9 +158,112 @@ const VideoPreview = ({ videoSrc, poster }) => {
     } else {
       video.pause();
       setIsPlaying(false);
-      setShowPoster(true);
+    }
+
+    if (document.fullscreenElement) {
+      resetControlsTimeout();
     }
   };
+
+  // Keyboard and mouse controls active only in fullscreen
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !isFullscreen) return undefined;
+
+    const adjustVolume = (delta) => {
+      const currentVolume = video.muted ? 0 : video.volume;
+      const nextVolume = Math.min(1, Math.max(0, currentVolume + delta));
+      video.volume = nextVolume;
+      video.muted = nextVolume === 0;
+      setVolume(nextVolume);
+      setIsMuted(nextVolume === 0);
+      resetControlsTimeout();
+    };
+
+    const seekBy = (seconds) => {
+      const target = Math.min(
+        Math.max(video.currentTime + seconds, 0),
+        video.duration || video.currentTime,
+      );
+      video.currentTime = target;
+      resetControlsTimeout();
+    };
+
+    const handleKeydown = (e) => {
+      if (!document.fullscreenElement) return;
+
+      switch (e.code) {
+        case "Escape":
+          e.preventDefault();
+          e.stopPropagation();
+          exitFullscreen();
+          break;
+        case "Space":
+          e.preventDefault();
+          e.stopPropagation();
+          togglePlayPause();
+          resetControlsTimeout();
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          e.stopPropagation();
+          seekBy(5);
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          e.stopPropagation();
+          seekBy(-5);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          e.stopPropagation();
+          adjustVolume(0.05);
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          e.stopPropagation();
+          adjustVolume(-0.05);
+          break;
+        case "KeyF":
+          e.preventDefault();
+          e.stopPropagation();
+          exitFullscreen();
+          break;
+        default:
+          break;
+      }
+    };
+
+    const handleWheel = (e) => {
+      if (!document.fullscreenElement) return;
+      e.preventDefault();
+      const zoomDelta = e.deltaY < 0 ? 0.1 : -0.1;
+      const newZoom = Math.min(3, Math.max(1, zoomLevel + zoomDelta));
+      setZoomLevel(newZoom);
+      resetControlsTimeout();
+    };
+
+    const handleDoubleClick = () => {
+      if (!document.fullscreenElement) return;
+      exitFullscreen();
+    };
+
+    document.addEventListener("keydown", handleKeydown);
+    video.addEventListener("wheel", handleWheel, { passive: false });
+    video.addEventListener("dblclick", handleDoubleClick);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+      video.removeEventListener("wheel", handleWheel, { passive: false });
+      video.removeEventListener("dblclick", handleDoubleClick);
+    };
+  }, [
+    isFullscreen,
+    zoomLevel,
+    resetControlsTimeout,
+    exitFullscreen,
+    togglePlayPause,
+  ]);
 
   const handleSeek = (e) => {
     const video = videoRef.current;
@@ -172,19 +306,6 @@ const VideoPreview = ({ videoSrc, poster }) => {
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const exitFullscreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-    setShowPoster(true);
-  };
-
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       {showPoster && poster && (
@@ -204,9 +325,13 @@ const VideoPreview = ({ videoSrc, poster }) => {
         poster={poster}
         className="project-image project-video"
         style={{
-          cursor: "pointer",
+          cursor: document.fullscreenElement ? "default" : "pointer",
           objectFit: "contain",
           display: showPoster ? "none" : "block",
+          transform: document.fullscreenElement
+            ? `scale(${zoomLevel})`
+            : "none",
+          transition: "transform 0.3s ease-in-out",
         }}
         onClick={
           document.fullscreenElement ? togglePlayPause : handleVideoClick
@@ -398,7 +523,7 @@ function Projects() {
         acc[project.category] = (acc[project.category] || 0) + 1;
         return acc;
       },
-      { all: 0 }
+      { all: 0 },
     );
 
     return [
@@ -424,7 +549,7 @@ function Projects() {
   const filteredProjects = useMemo(() => {
     if (selectedCategory === "all") return projectsData;
     return projectsData.filter(
-      (project) => project.category === selectedCategory
+      (project) => project.category === selectedCategory,
     );
   }, [selectedCategory]);
 

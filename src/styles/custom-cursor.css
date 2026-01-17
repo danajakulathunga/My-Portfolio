@@ -6,6 +6,22 @@
     cursor: none !important;
   }
 
+  /* Allow system cursor when an element is fullscreen (e.g., playing video) */
+  :fullscreen,
+  :fullscreen * {
+    cursor: auto !important;
+  }
+
+  :-webkit-full-screen,
+  :-webkit-full-screen * {
+    cursor: auto !important;
+  }
+
+  :-moz-full-screen,
+  :-moz-full-screen * {
+    cursor: auto !important;
+  }
+
   /* Custom cursor elements */
   .custom-cursor {
     position: fixed;
