@@ -3,11 +3,6 @@ import { useSectionAnimation } from "../hooks/useSectionAnimation";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { triggerSectionAnimation } from "../utils/animationUtils";
 
-const myCV = new URL(
-  /* @vite-ignore */ "../../assets/My CV/my_CV_New.pdf",
-  import.meta.url
-).href;
-
 function Home() {
   const { ref: sectionRef, animateClass } = useSectionAnimation({
     threshold: 0.15,
@@ -71,7 +66,7 @@ function Home() {
               Connect With Me
             </a>
             <a
-              href={myCV}
+              href="/My CV New.pdf"
               download="My CV New.pdf"
               rel="noopener noreferrer"
               className="btn btn-cv"
