@@ -24,7 +24,8 @@
 }
 
 .navbar-scrolled {
-  background: radial-gradient(circle at -10% -20%, var(--accent-soft), transparent 42%),
+  background:
+    radial-gradient(circle at -10% -20%, var(--accent-soft), transparent 42%),
     var(--navbar-bg-scrolled);
   box-shadow: var(--shadow-soft);
 }
@@ -34,7 +35,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
-  font-weight: 600; 
+  font-weight: 600;
 }
 
 .navbar-logo-section {
@@ -71,17 +72,25 @@
 }
 
 .navbar-link:hover {
-  background: radial-gradient(circle at top left, var(--accent-soft), transparent);
+  background: radial-gradient(
+    circle at top left,
+    var(--accent-soft),
+    transparent
+  );
   border-color: var(--border-subtle);
   transform: translateY(-1px);
 }
 
 /* Active nav label styles and animation */
-.navbar-link.active{
+.navbar-link.active {
   color: #a78bfa;
-  border-color: rgba(124,58,237,0.18);
-  background: linear-gradient(90deg, rgba(124,58,237,0.04), rgba(14, 165, 233, 0.03));
-  box-shadow: 0 8px 30px rgba(124,58,237,0.08);
+  border-color: rgba(124, 58, 237, 0.18);
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.04),
+    rgba(14, 165, 233, 0.03)
+  );
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.08);
   font-weight: 700;
 }
 
@@ -89,12 +98,22 @@
 
 /* pulse animation when navigating */
 @keyframes nav-pop {
-  0%{ transform: translateY(0) scale(1); text-shadow: none }
-  40%{ transform: translateY(-6px) scale(1.08); text-shadow: 0 6px 24px rgba(124,58,237,0.18) }
-  100%{ transform: translateY(0) scale(1); text-shadow: none }
+  0% {
+    transform: translateY(0) scale(1);
+    text-shadow: none;
+  }
+  40% {
+    transform: translateY(-6px) scale(1.08);
+    text-shadow: 0 6px 24px rgba(124, 58, 237, 0.18);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    text-shadow: none;
+  }
 }
-.navbar-link.pulse{ animation: nav-pop .72s cubic-bezier(.2,.9,.3,1); }
-
+.navbar-link.pulse {
+  animation: nav-pop 0.72s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
 
 .navbar-toggle {
   display: none;
@@ -254,5 +273,3 @@
     height: 2.5rem;
   }
 }
-
-

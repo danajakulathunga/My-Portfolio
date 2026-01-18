@@ -61,7 +61,9 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease,
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
     border-color 0.3s ease;
 }
 
@@ -70,6 +72,7 @@ body {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 
 body {
@@ -84,8 +87,14 @@ body {
   background-size: auto, cover;
   background-position: center;
   color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Inter", "Segoe UI", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Inter",
+    "Segoe UI",
+    sans-serif;
 }
 
 img {
@@ -115,7 +124,9 @@ main {
 .animate-section {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.75s ease-in-out, transform 0.75s ease-in-out;
+  transition:
+    opacity 0.75s ease-in-out,
+    transform 0.75s ease-in-out;
   will-change: opacity, transform;
 }
 
@@ -169,9 +180,12 @@ main {
   font-weight: 500;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color var(--transition-fast),
-    color var(--transition-fast), border-color var(--transition-fast),
-    transform 120ms ease-out, box-shadow 120ms ease-out;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform 120ms ease-out,
+    box-shadow 120ms ease-out;
   text-decoration: none;
 }
 
@@ -216,8 +230,11 @@ main {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
-    border-color 0.15s ease-out, background 0.2s ease-out;
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    border-color 0.15s ease-out,
+    background 0.2s ease-out;
   z-index: 40;
 }
 
@@ -228,17 +245,16 @@ main {
 }
 
 .footer {
-  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  border-top: 3px solid var(--border-subtle);
   padding: 1.75rem 0 2.2rem;
   margin-top: 1rem;
-}
-
-:root[data-theme="dark"] .footer {
-  background-color: rgba(15, 23, 42, 0.8);
-}
-
-:root[data-theme="light"] .footer {
-  background-color: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(58px);
+  background: linear-gradient(
+    to bottom,
+    var(--navbar-bg),
+    var(--navbar-bg),
+    transparent
+  );
 }
 
 .footer-inner {
