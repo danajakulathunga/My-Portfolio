@@ -2,6 +2,7 @@ import ProfilePicture from "../components/ProfilePicture";
 import { useSectionAnimation } from "../hooks/useSectionAnimation";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { triggerSectionAnimation } from "../utils/animationUtils";
+import cvPdf from "../assets/my_CV/my_cv.pdf";
 
 function Home() {
   const { ref: sectionRef, animateClass } = useSectionAnimation({
@@ -66,9 +67,8 @@ function Home() {
               Connect With Me
             </a>
             <a
-              href="/My CV New.pdf"
-              download="My CV New.pdf"
-              rel="noopener noreferrer"
+              href={cvPdf}
+              download="my_cv.pdf"
               className="btn btn-cv"
               title="Download My CV"
             >
