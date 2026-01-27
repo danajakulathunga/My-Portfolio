@@ -33,6 +33,24 @@ function Home() {
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
+  const downloadCV = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(cvPdf);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "my_cv.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Failed to download CV:", error);
+    }
+  };
+
   return (
     <section
       id="home"
@@ -66,9 +84,8 @@ function Home() {
             <a href="#contact" className="btn btn-outline">
               Connect With Me
             </a>
-            <a
-              href={cvPdf}
-              download="my_cv.pdf"
+            <button
+              onClick={downloadCV}
               className="btn btn-cv"
               title="Download My CV"
             >
@@ -82,12 +99,12 @@ function Home() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
               Download My CV
-            </a>
+            </button>
           </div>
         </div>
 
