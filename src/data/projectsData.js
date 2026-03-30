@@ -54,6 +54,11 @@ import M3_5 from "../assets/images/projects/M3/M2(5).jpg";
 import M3_6 from "../assets/images/projects/M3/M2(6).jpg";
 import M3_7 from "../assets/images/projects/M3/M2(7).jpg";
 
+import UI3 from "../assets/images/projects/UI3.jpeg";
+import UI3_1 from "../assets/images/projects/UI3/UI3(1).png";
+import UI3_2 from "../assets/images/projects/UI3/UI3(2).png";
+import UI3_3 from "../assets/images/projects/UI3/UI3(3).png";
+
 export const projectsData = [
   {
     id: 1,
@@ -153,5 +158,16 @@ export const projectsData = [
       "https://github.com/danajakulathunga/ContactOne-Mobile-Application",
     category: "Mobile Application",
     screenshots: [M3_1, M3_2, M3_3, M3_4, M3_5, M3_6, M3_7],
+  },
+  {
+    id: 8,
+    title: "UI/UX Assessment 2 - Web-based document approval system's UI.",
+    description:
+      "The system provides a simple, intuitive UI/UX for managing document approvals with easy navigation across three main pages and a clear user workflow.",
+    tech: ["Figma"],
+    image: UI3,
+    category: "UI Designs",
+    screenshots: [UI3_1, UI3_2, UI3_3],
+    onlyScreenshots: true,
   },
 ];
