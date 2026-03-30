@@ -1,5 +1,5 @@
-import profileImg from '../assets/profile.jpg'
-import '../styles/profilePicture.css'
+import profileImg from "../assets/profile.jpeg";
+import "../styles/profilePicture.css";
 
 function ProfilePicture() {
   return (
@@ -17,7 +17,7 @@ function ProfilePicture() {
         <img src={profileImg} alt="Profile" className="profile-image" />
       </div>
     </div>
-  )
+  );
 }
 
-export default ProfilePicture
+export default ProfilePicture;

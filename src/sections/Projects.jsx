@@ -636,7 +636,13 @@ function Projects() {
                 <ProjectActionButtons
                   project={project}
                   onScreenshotsClick={handleScreenshotsClick}
-                  showGithub={project.title !== "SignIn/Signup UI Design"}
+                  showGithub={
+                    project.title !== "SignIn/Signup UI Design" &&
+                    project.title !==
+                      "UI/UX Assessment – Event Management System" &&
+                    project.title !==
+                      "UI/UX Assessment 2 - Web-based document approval system's UI."
+                  }
                 />
               </div>
             </article>
